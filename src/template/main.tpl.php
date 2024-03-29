@@ -11,9 +11,11 @@
 </head>
 
 <body>
+    <?php require_once "header.tpl.php"; ?>
     <main>
-        <?= "" ?>
+        <?php require_once $paths[$uri]; ?>
     </main>
+    <?php require_once "footer.tpl.php"; ?>
 </body>
 
 </html>
