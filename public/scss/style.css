@@ -23,8 +23,7 @@ a {
 
 main {
   background: #ffc2c2;
-  height: 100vh;
-  padding: 75px 0 150px 0;
+  padding: 75px 10% 150px 10%;
 }
 
 header {
@@ -36,18 +35,29 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 10;
 }
-header .logo {
+header .container {
+  background: inherit;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  z-index: 10;
+}
+header .container button {
+  display: none;
+}
+header .container .logo {
   align-items: center;
   display: flex;
   color: #fff;
   justify-content: center;
   width: 75px;
 }
-header .logo a {
+header .container .logo a {
   padding: 10px;
 }
-header .logo a svg {
+header .container .logo a svg {
   fill: currentColor;
 }
 header nav {
@@ -69,10 +79,8 @@ header nav ul li a {
 
 footer {
   background: #000;
-  bottom: 0;
   display: flex;
   height: 150px;
-  position: absolute;
   width: 100%;
 }
 footer p {
@@ -88,4 +96,123 @@ footer p span {
   font-size: 12px;
   font-weight: normal;
   margin: 5px 0 0 0;
+}
+
+.feed__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.feed__container span {
+  background: red;
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+}
+
+@media (width <= 767.98px) {
+  main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  header {
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  header .container {
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+  }
+  header .container button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 75px;
+    justify-content: center;
+    left: 16px;
+    position: absolute;
+    width: 75px;
+  }
+  header .container button span {
+    background: #fff;
+    border-radius: 50px;
+    height: 2px;
+    position: relative;
+    width: 37.5%;
+    transition: top 0.125s linear 0.125s, transform 0.125s linear;
+  }
+  header .container button span:nth-of-type(1) {
+    top: -5px;
+  }
+  header .container button span:nth-of-type(2) {
+    top: 5px;
+  }
+  header nav {
+    background: #222;
+    left: 0;
+    padding: 25px 0;
+    opacity: 0;
+    position: absolute;
+    transform: translateY(-125px);
+    width: 100%;
+    transition: opacity 0.25s linear, transform 0.25s linear;
+  }
+  header nav ul {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  header nav ul li {
+    align-items: center;
+    display: flex;
+    height: 75px;
+    margin: 0;
+    padding: 0 16px;
+    position: relative;
+    width: 100%;
+  }
+  header nav ul li:after {
+    border: 1px solid rgba(128, 128, 128, 0.75);
+    border-radius: 50px;
+    bottom: 0;
+    content: "";
+    left: 16px;
+    position: absolute;
+    right: 16px;
+  }
+  header nav ul li:last-of-type:after {
+    display: none;
+  }
+  header nav ul li a {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+  }
+  header.open button span {
+    transition: top 0.125s linear, transform 0.125s linear 0.125s;
+  }
+  header.open button span:nth-of-type(1) {
+    top: 1px;
+    transform: rotate(45deg);
+  }
+  header.open button span:nth-of-type(2) {
+    top: -1px;
+    transform: rotate(-45deg);
+  }
+  header.open nav {
+    opacity: 1;
+    transform: translateY(75px);
+    transition: opacity 0.25s linear, transform 0.25s linear;
+  }
+}
+@media (768px <= width <= 1199.98px) {
+  header {
+    background: blue;
+  }
 }/*# sourceMappingURL=style.css.map */
