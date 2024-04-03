@@ -1,8 +1,15 @@
-let feed = document.querySelector(".feed__container")
 let limit = 9
+let speciesNb = 1025
+let refreshBtn = document.querySelector("button.refresh")
+let feed = document.querySelector(".feed__container")
+let idList = []
 
 for (i = 0; i < limit; i++) {
-    fetch("https://pokeapi.co/api/v2/pokemon/" + (i + 1) + "/")
+    idList[i] = Math.floor(Math.random() * speciesNb)
+}
+
+idList.forEach(id => {
+    fetch("https://pokeapi.co/api/v2/pokemon/" + id + "/")
         .then(res => res.json())
         .then(data => {
             fetch(data.species.url)
@@ -18,7 +25,7 @@ for (i = 0; i < limit; i++) {
                 .catch(error => console.error("Error : ", error))
         })
         .catch(error => console.error("Error : ", error))
-}
+})
 
 getID = (data) => {
     return data.id
@@ -55,34 +62,29 @@ getDesc = (obj) => {
 }
 
 setCard = (data) => {
-    // item = document.createElement("div")
-    // img = document.createElement("img")
-    // div = document.createElement("div")
-    // h2 = document.createElement("h2")
-    // p1 = document.createElement("p")
-    // p2 = document.createElement("p")
+    let item = document.createElement("div")
+    let img = document.createElement("img")
+    let div = document.createElement("div")
+    let h2 = document.createElement("h2")
+    let p1 = document.createElement("p")
+    let p2 = document.createElement("p")
 
-    // item.classList.add("item")
-    // img.src = data.img
-    // img.alt = "Sprite de " + data.name
-    // div.classList.add("text")
+    item.classList.add("item")
+    img.src = data.img
+    img.alt = "Sprite de " + data.name
+    div.classList.add("text")
+    h2.innerText = data.name
+    p1.innerText = "#" + data.id
+    p2.innerText = data.desc
 
-    // feed.appendChild(item).append(img, div)
-    // div.append(p1, h2, p2)
-
-
-    // let item = document.createElement("div")
-    // let img = document.createElement("img")
-    // let id
-    // item.classList.add("item")
-    // feed.appendChild(item)
+    feed.appendChild(item).append(img, div)
+    div.append(p1, h2, p2)
 }
 
+refresh = () => {
+    location.reload()
+}
 
-
-// getAPI()
-// setCard(pokemonData)
-
-// let img = document.createElement("img")
-// img.src = Object.keys(data).sprite
-// feedItems.appendChild(img)
+refreshBtn.addEventListener("click", () => {
+    refresh()
+})
