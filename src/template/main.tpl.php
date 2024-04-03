@@ -7,7 +7,9 @@
     <title><?= "" ?></title>
 
     <link rel="stylesheet" href="scss/style.css" />
-    <script type="module" src="js/script.mjs"></script>
+    <script type="text/javascript" src="js/script.js" defer></script>
+    <script type="text/javascript" src="js/menu.js" defer></script>
+    <script type="text/javascript" src="js/feed.js" defer></script>
 </head>
 
 <body>

@@ -4,38 +4,55 @@ let refreshBtn = document.querySelector("button.refresh")
 let feed = document.querySelector(".feed__container")
 let idList = []
 
-for (i = 0; i < limit; i++) {
-    idList[i] = Math.floor(Math.random() * speciesNb)
+let init = () => {
+    setIdList()
+    getApiData()
 }
 
-idList.forEach(id => {
-    fetch("https://pokeapi.co/api/v2/pokemon/" + id + "/")
-        .then(res => res.json())
-        .then(data => {
-            fetch(data.species.url)
-                .then(res => res.json())
-                .then(obj => {
-                    pokemonID = getID(data)
-                    pokemonImg = getImage(data)
-                    pokemonName = getName(obj)
-                    pokemonDesc = getDesc(obj)
+let setIdList = () => {
+    for (i = 0; i < limit; i++) {
+        idList[i] = (Math.floor(Math.random() * speciesNb) + 1)
+    }
 
-                    setCard({ id: pokemonID, img: pokemonImg, name: pokemonName, desc: pokemonDesc })
-                })
-                .catch(error => console.error("Error : ", error))
-        })
-        .catch(error => console.error("Error : ", error))
-})
+    if (idList.length !== 0) {
+        idList = []
 
-getID = (data) => {
+        for (i = 0; i < limit; i++) {
+            idList[i] = (Math.floor(Math.random() * speciesNb) + 1)
+        }
+    }
+}
+
+let getApiData = () => {
+    idList.forEach(id => {
+        fetch("https://pokeapi.co/api/v2/pokemon/" + id + "/")
+            .then(res => res.json())
+            .then(data => {
+                fetch(data.species.url)
+                    .then(res => res.json())
+                    .then(obj => {
+                        pokemonID = getID(data)
+                        pokemonImg = getImage(data)
+                        pokemonName = getName(obj)
+                        pokemonDesc = getDesc(obj)
+
+                        setItem({ id: pokemonID, img: pokemonImg, name: pokemonName, desc: pokemonDesc })
+                    })
+                    .catch(error => console.error("Error : ", error))
+            })
+            .catch(error => console.error("Error : ", error))
+    })
+}
+
+let getID = (data) => {
     return data.id
 }
 
-getImage = (data) => {
+let getImage = (data) => {
     return data.sprites.front_default
 }
 
-getName = (obj) => {
+let getName = (obj) => {
     nameFr = null
 
     obj.names.forEach(name => {
@@ -47,7 +64,7 @@ getName = (obj) => {
     return nameFr
 }
 
-getDesc = (obj) => {
+let getDesc = (obj) => {
     arr = []
 
     obj.flavor_text_entries.forEach(desc => {
@@ -61,13 +78,13 @@ getDesc = (obj) => {
     return desc;
 }
 
-setCard = (data) => {
-    let item = document.createElement("div")
-    let img = document.createElement("img")
-    let div = document.createElement("div")
-    let h2 = document.createElement("h2")
-    let p1 = document.createElement("p")
-    let p2 = document.createElement("p")
+let setItem = (data) => {
+    item = document.createElement("div")
+    img = document.createElement("img")
+    div = document.createElement("div")
+    h2 = document.createElement("h2")
+    p1 = document.createElement("p")
+    p2 = document.createElement("p")
 
     item.classList.add("item")
     img.src = data.img
@@ -81,10 +98,23 @@ setCard = (data) => {
     div.append(p1, h2, p2)
 }
 
-refresh = () => {
-    location.reload()
+let deleteItems = (items) => {
+    items.forEach(item => {
+        item.remove()
+    })
+}
+
+let refresh = () => {
+    items = document.querySelectorAll(".feed__container > .item")
+    
+    deleteItems(items)
+    init()
 }
 
 refreshBtn.addEventListener("click", () => {
     refresh()
+})
+
+window.addEventListener("DOMContentLoaded", () => {
+    init()
 })
