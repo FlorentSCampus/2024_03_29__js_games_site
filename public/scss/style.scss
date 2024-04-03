@@ -6,13 +6,15 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     width: 100%;
 }
 
-ul, li {
+ul,
+li {
     list-style: none;
 }
 
@@ -20,6 +22,14 @@ a {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
+}
+
+button,
+input[type="submit"] {
+    background: #fff;
+    border: none;
+    box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+    cursor: pointer;
 }
 
 h1 {
@@ -121,19 +131,60 @@ footer {
     flex-direction: column;
     position: relative;
 
-    .button {
+    > div {
         display: flex;
         justify-content: center;
         margin-bottom: 50px;
         width: 100%;
 
         .refresh {
-            background: #fff;
-            border: none;
             border-radius: 50px;
-            cursor: pointer;
             height: 50px;
             width: 50px;
+        }
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+
+        > div {
+            background: #fff;
+            border-radius: 50px;
+            box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+            display: flex;
+            width: 100%;
+            
+            &:has(input:focus) {
+                background: rgba(200, 250, 200, .25);
+            }
+
+            input,
+            button {
+                background: transparent;
+            }
+
+            input {
+                border: none;
+                border-radius: 50px 0 0 50px;
+                padding-left: 25px;
+                width: 85%;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            button {
+                align-items: center;
+                border-radius: 0 50px 50px 0;
+                box-shadow: none;
+                display: flex;
+                height: 50px;
+                justify-content: center;
+                width: 15%;
+            }
         }
     }
 
@@ -144,6 +195,7 @@ footer {
         box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
         display: flex;
         flex-direction: column;
+        margin: 0;
         padding: 5% 10% 15% 10%;
 
         &:not(:last-of-type) {
@@ -170,7 +222,8 @@ footer {
                 }
             }
 
-            h2, p {
+            h2,
+            p {
                 display: flex;
                 justify-content: center;
                 width: 100%;
@@ -198,7 +251,7 @@ footer {
             button {
                 background: transparent;
                 border: none;
-                cursor: pointer;
+                box-shadow: none;
                 display: flex;
                 flex-direction: column;
                 height: 75px;

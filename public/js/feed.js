@@ -23,7 +23,7 @@ let setIdList = () => {
     }
 }
 
-let getApiData = () => {
+let getApiData = (insertBefore = false) => {
     idList.forEach(id => {
         fetch("https://pokeapi.co/api/v2/pokemon/" + id + "/")
             .then(res => res.json())
@@ -36,7 +36,7 @@ let getApiData = () => {
                         pokemonName = getName(obj)
                         pokemonDesc = getDesc(obj)
 
-                        setItem({ id: pokemonID, img: pokemonImg, name: pokemonName, desc: pokemonDesc })
+                        setItem({ id: pokemonID, img: pokemonImg, name: pokemonName, desc: pokemonDesc }, insertBefore)
                     })
                     .catch(error => console.error("Error : ", error))
             })
@@ -78,7 +78,7 @@ let getDesc = (obj) => {
     return desc;
 }
 
-let setItem = (data) => {
+let setItem = (data, insertBefore) => {
     item = document.createElement("div")
     img = document.createElement("img")
     div = document.createElement("div")
@@ -94,8 +94,13 @@ let setItem = (data) => {
     p1.innerText = "#" + data.id
     p2.innerText = data.desc
 
-    feed.appendChild(item).append(img, div)
-    div.append(p1, h2, p2)
+    if (!insertBefore) {
+        feed.appendChild(item).append(img, div, div.append(p1, h2, p2))
+    } else {
+        firstItem = document.querySelector(".feed__container .item")
+        feed.insertBefore(item, firstItem)
+        item.append(img, div, div.append(p1, h2, p2))
+    }
 }
 
 let deleteItems = (items) => {
