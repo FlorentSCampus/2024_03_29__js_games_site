@@ -21,8 +21,14 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 75px 0;
+}
+
 main {
-  background: #ffc2c2;
+  background: rgb(235, 235, 235);
   padding: 75px 10% 150px 10%;
 }
 
@@ -103,11 +109,51 @@ footer p span {
   flex-direction: column;
   position: relative;
 }
-.feed__container span {
-  background: red;
-  height: 200px;
-  width: 200px;
+.feed__container .button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 100%;
+}
+.feed__container .button .refresh {
+  background: #fff;
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+.feed__container .item {
+  align-items: center;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+  display: flex;
+  flex-direction: column;
+  padding: 5% 10% 15% 10%;
+}
+.feed__container .item:not(:last-of-type) {
+  margin-bottom: 25px;
+}
+.feed__container .item img {
+  padding-bottom: 5%;
+  width: 50%;
+}
+.feed__container .item .text {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.feed__container .item .text h2 {
+  margin-bottom: 25px;
+}
+.feed__container .item .text p:nth-of-type(2) {
+  text-align: center;
+}
+.feed__container .item .text h2, .feed__container .item .text p {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 @media (width <= 767.98px) {
