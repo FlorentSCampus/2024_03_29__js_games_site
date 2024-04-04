@@ -1,6 +1,82 @@
+let limit = 9
+let speciesNb = 1025
 let refreshBtn = document.querySelector("button.refresh")
-let formInput = document.querySelector(".feed__container form input")
-let formBtn = document.querySelector(".feed__container form button")
+let feed = document.querySelector(".feed__container")
+let idList = []
+
+let init = () => {
+    setIdList()
+    getApiData()
+}
+
+let setIdList = () => {
+    for (i = 0; i < limit; i++) {
+        idList[i] = (Math.floor(Math.random() * speciesNb) + 1)
+    }
+
+    if (idList.length !== 0) {
+        idList = []
+
+        for (i = 0; i < limit; i++) {
+            idList[i] = (Math.floor(Math.random() * speciesNb) + 1)
+        }
+    }
+}
+
+let getApiData = (insertBefore = false) => {
+    idList.forEach(id => {
+        fetch("https://pokeapi.co/api/v2/pokemon/" + id + "/")
+            .then(res => res.json())
+            .then(data => {
+                fetch(data.species.url)
+                    .then(res => res.json())
+                    .then(obj => {
+                        pokemonID = getID(data)
+                        pokemonImg = getImage(data)
+                        pokemonName = getName(obj)
+                        pokemonDesc = getDesc(obj)
+
+                        setItem({ id: pokemonID, img: pokemonImg, name: pokemonName, desc: pokemonDesc }, insertBefore)
+                    })
+                    .catch(error => console.error("Error : ", error))
+            })
+            .catch(error => console.error("Error : ", error))
+    })
+}
+
+let getID = (data) => {
+    return data.id
+}
+
+let getImage = (data) => {
+    return data.sprites.front_default
+}
+
+let getName = (obj) => {
+    nameFr = null
+
+    obj.names.forEach(name => {
+        if (name.language.name === "fr") {
+            nameFr = name.name
+        }
+    })
+
+    return nameFr
+}
+
+let getDesc = (obj) => {
+    arr = []
+
+    obj.flavor_text_entries.forEach(desc => {
+        if (desc.language.name === "fr") {
+            arr.push(desc.flavor_text)
+        }
+    })
+
+    desc = arr[(Math.floor(Math.random() * arr.length))]
+
+    return desc;
+}
 
 let setItem = (data, insertBefore) => {
     item = document.createElement("div")
@@ -19,44 +95,31 @@ let setItem = (data, insertBefore) => {
     p2.innerText = data.desc
 
     if (!insertBefore) {
-        feedContainer.appendChild(item).append(img, div), div.append(p1, h2, p2)
+        feed.appendChild(item).append(img, div, div.append(p1, h2, p2))
     } else {
         firstItem = document.querySelector(".feed__container .item")
-        feedContainer.insertBefore(item, firstItem)
-        item.append(img, div), div.append(p1, h2, p2)
+        feed.insertBefore(item, firstItem)
+        item.append(img, div, div.append(p1, h2, p2))
     }
 }
 
-let removeItems = (items) => {
+let deleteItems = (items) => {
     items.forEach(item => {
         item.remove()
     })
 }
 
-let refreshItems = () => {
+let refresh = () => {
     items = document.querySelectorAll(".feed__container > .item")
     
-    removeItems(items)
-    initDatas()
+    deleteItems(items)
+    init()
 }
 
-let getInputValue = () => {
-    value = parseInt(formInput.value)
+refreshBtn.addEventListener("click", () => {
+    refresh()
+})
 
-    if (formInput.value !== "" && typeof (value) === "number") {
-        pokemonIDs = []
-        pokemonIDs[0] = value
-        formInput.value = ""
-        getDatas(true)
-    }
-}
-
-let initFeed = () => {
-    refreshBtn.addEventListener("click", () => {
-        refreshItems()
-    })
-
-    formBtn.addEventListener("click", () => {
-        getInputValue()
-    })
-}
+window.addEventListener("DOMContentLoaded", () => {
+    init()
+})

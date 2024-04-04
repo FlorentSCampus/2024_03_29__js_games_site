@@ -234,12 +234,13 @@ footer p span {
   height: 40px;
   width: 40px;
 }
-.gallery__container .pictures {
+.gallery__container div:last-of-type {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
 }
-.gallery__container .pictures .item {
+.gallery__container div:last-of-type .item {
+  align-items: center;
   background: #fff;
   border-radius: 25px;
   box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
@@ -250,29 +251,30 @@ footer p span {
   position: relative;
   width: calc(50% - 20px);
 }
-.gallery__container .pictures .item::before {
+.gallery__container div:last-of-type .item::before {
   content: "";
   padding-top: 100%;
 }
-.gallery__container .pictures .item img {
-  height: 100%;
+.gallery__container div:last-of-type .item img {
+  height: 75%;
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
 }
-.gallery__container .pictures.list {
+.gallery__container div:last-of-type.list {
   display: grid;
 }
-.gallery__container .pictures.list .item {
+.gallery__container div:last-of-type.list .item {
   height: 175px;
   width: calc(100% - 20px);
 }
-.gallery__container .pictures.list .item::before {
+.gallery__container div:last-of-type.list .item::before {
   content: none;
 }
-.gallery__container .pictures.list .item img {
-  width: 100%;
+.gallery__container div:last-of-type.list .item img {
+  height: auto;
   position: initial;
+  width: 100%;
 }
 
 @media (width <= 767.98px) {
@@ -374,10 +376,5 @@ footer p span {
     opacity: 1;
     transform: translateY(75px);
     transition: opacity 0.25s linear, transform 0.25s linear;
-  }
-}
-@media (768px <= width <= 1199.98px) {
-  header {
-    background: blue;
   }
 }/*# sourceMappingURL=style.css.map */
