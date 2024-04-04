@@ -4,7 +4,7 @@ let gameContainer = document.querySelector(".game__container")
 
 window.addEventListener("DOMContentLoaded", () => {
     initDatas()
-
+    
     if (feedContainer !== null) initFeed()
     if (galleryContainer !== null) initGallery()
     if (gameContainer !== null) null // initGame()

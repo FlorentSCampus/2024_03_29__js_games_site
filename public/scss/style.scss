@@ -197,6 +197,7 @@ footer {
         flex-direction: column;
         margin: 0;
         padding: 5% 10% 15% 10%;
+        position: relative;
 
         &:not(:last-of-type) {
             margin-bottom: 25px;
@@ -227,6 +228,21 @@ footer {
                 display: flex;
                 justify-content: center;
                 width: 100%;
+            }
+        }
+
+        button {
+            background: red;
+            border-radius: calc(25px - 16px);
+            box-shadow: none;
+            height: 50px;
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            width: 50px;
+
+            svg {
+                fill: #fff;
             }
         }
     }
@@ -300,6 +316,23 @@ footer {
                     height: 75%;
                     object-fit: cover;
                     position: absolute;
+                }
+
+                button {
+                    background: red;
+                    border-radius: calc(25px - 16px);
+                    box-shadow: none;
+                    height: 30px;
+                    position: absolute;
+                    right: 16px;
+                    top: 16px;
+                    width: 30px;
+        
+                    svg {
+                        fill: #fff;
+                        height: 100%;
+                        width: 20px;
+                    }
                 }
             }
 

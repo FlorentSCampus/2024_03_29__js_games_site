@@ -17,6 +17,9 @@ let setPicture = (data, insertBefore) => {
         galleryContainer.children[2].insertBefore(item, firstItem)
         item.append(img)
     }
+
+    setDeleteBtn(item)
+    deleteItem(item)
 }
 
 let addPicture = () => {
