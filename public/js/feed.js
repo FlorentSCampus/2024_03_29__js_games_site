@@ -25,6 +25,9 @@ let setItem = (data, insertBefore) => {
         feedContainer.insertBefore(item, firstItem)
         item.append(img, div), div.append(p1, h2, p2)
     }
+
+    setDeleteBtn(item)
+    deleteItem(item)
 }
 
 let removeItems = (items) => {

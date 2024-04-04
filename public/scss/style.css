@@ -176,6 +176,7 @@ footer p span {
   flex-direction: column;
   margin: 0;
   padding: 5% 10% 15% 10%;
+  position: relative;
 }
 .feed__container .item:not(:last-of-type) {
   margin-bottom: 25px;
@@ -200,6 +201,19 @@ footer p span {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+.feed__container .item button {
+  background: red;
+  border-radius: 9px;
+  box-shadow: none;
+  height: 50px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 50px;
+}
+.feed__container .item button svg {
+  fill: #fff;
 }
 
 .gallery__container {
@@ -260,6 +274,21 @@ footer p span {
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
+}
+.gallery__container div:last-of-type .item button {
+  background: red;
+  border-radius: 9px;
+  box-shadow: none;
+  height: 30px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 30px;
+}
+.gallery__container div:last-of-type .item button svg {
+  fill: #fff;
+  height: 100%;
+  width: 20px;
 }
 .gallery__container div:last-of-type.list {
   display: grid;
