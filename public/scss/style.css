@@ -202,6 +202,79 @@ footer p span {
   width: 100%;
 }
 
+.gallery__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.gallery__container div:first-of-type {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  padding: 0 10px;
+  width: 100%;
+}
+.gallery__container div .grid,
+.gallery__container div .list,
+.gallery__container div .add {
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+}
+.gallery__container div .grid {
+  margin-right: 10px;
+}
+.gallery__container div .list {
+  margin-left: 10px;
+}
+.gallery__container div .add {
+  margin-left: auto;
+}
+.gallery__container div .add svg {
+  height: 40px;
+  width: 40px;
+}
+.gallery__container .pictures {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.gallery__container .pictures .item {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  width: calc(50% - 20px);
+}
+.gallery__container .pictures .item::before {
+  content: "";
+  padding-top: 100%;
+}
+.gallery__container .pictures .item img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+}
+.gallery__container .pictures.list {
+  display: grid;
+}
+.gallery__container .pictures.list .item {
+  height: 175px;
+  width: calc(100% - 20px);
+}
+.gallery__container .pictures.list .item::before {
+  content: none;
+}
+.gallery__container .pictures.list .item img {
+  width: 100%;
+  position: initial;
+}
+
 @media (width <= 767.98px) {
   main {
     padding-left: 16px;

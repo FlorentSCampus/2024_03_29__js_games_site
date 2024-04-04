@@ -8,9 +8,9 @@
 
     <link rel="stylesheet" href="scss/style.css" />
     <script type="text/javascript" src="js/script.js" defer></script>
-    <script type="text/javascript" src="js/menu.js" defer></script>
+    <script type="text/javascript" src="js/data.js" defer></script>
     <script type="text/javascript" src="js/feed.js" defer></script>
-    <script type="text/javascript" src="js/form.js" defer></script>
+    <script type="text/javascript" src="js/menu.js" defer></script>
 </head>
 
 <body>
