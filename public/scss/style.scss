@@ -41,6 +41,7 @@ h1 {
 main {
     background: rgba(235, 235, 235, 1);
     padding: 75px 10% 150px 10%;
+    position: relative;
 }
 
 header {
@@ -146,7 +147,7 @@ footer {
 
     form {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         margin-bottom: 50px;
 
         > div {
@@ -184,6 +185,25 @@ footer {
                 height: 50px;
                 justify-content: center;
                 width: 15%;
+            }
+        }
+
+        p {
+            align-items: center;
+            color: red;
+            display: flex;
+            font-size: 14px;
+            font-weight: bold;
+            height: 50px;
+            justify-content: center;
+            opacity: 0;
+            text-align: center;
+            width: 100%;
+
+            transition: opacity .25s linear;
+
+            &.visible {
+                opacity: 1;
             }
         }
     }
@@ -251,9 +271,8 @@ footer {
 .gallery__container {
     display: flex;
     flex-direction: column;
-    position: relative;
 
-    div {
+    > div {
         &:first-of-type {
             display: flex;
             justify-content: center;
@@ -282,9 +301,8 @@ footer {
             margin-left: auto;
 
             svg {
-                $size: 40px;
-                height: $size;
-                width: $size;
+                height: auto;
+                width: 75%;
             }
         }
 
@@ -354,6 +372,117 @@ footer {
                     }
                 }
             }
+        }
+    }
+
+    form {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 75px);
+        justify-content: center;
+        left: 0;
+        opacity: 0;
+        padding: 50px;
+        position: absolute;
+        top: 75px;
+        width: 100%;
+        z-index: -1;
+
+        transition: all .25s linear, z-index 0s linear .25s;
+        
+        > div {
+            background: #fff;
+            border-radius: 50px;
+            box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+            display: flex;
+            width: 100%;
+            
+            &:has(input:focus) {
+                background: rgba(200, 250, 200, 1);
+            }
+
+            input,
+            button {
+                background: transparent;
+            }
+
+            input {
+                border: none;
+                border-radius: 50px 0 0 50px;
+                padding-left: 25px;
+                width: 85%;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            > button {
+                align-items: center;
+                border-radius: 0 50px 50px 0;
+                box-shadow: none;
+                display: flex;
+                height: 50px;
+                justify-content: center;
+                width: 15%;
+            }
+        }
+
+        p {
+            align-items: center;
+            color: red;
+            display: flex;
+            font-size: 14px;
+            font-weight: bold;
+            height: 50px;
+            justify-content: center;
+            opacity: 0;
+            text-align: center;
+            width: 100%;
+
+            transition: opacity .25s linear;
+
+            &.visible {
+                opacity: 1;
+            }
+        }
+
+        > button {
+            align-items: center;
+            background: transparent;
+            border: 2px solid currentColor;
+            border-radius: 50px;
+            box-shadow: none;
+            color: #fff;
+            display: flex;
+            height: 50px;
+            justify-content: center;
+            margin-top: 25px;
+            width: 50px;
+
+            transition: all .125s linear;
+
+            svg {
+                fill: currentColor;
+                height: auto;
+                width: 75%;
+            }
+
+            &:hover {
+                border-color: red;
+                color: red;
+            }
+        }
+        
+        &.open {
+            backdrop-filter: blur(10px);
+            background: rgba(128, 128, 128, .5);
+            opacity: 1;
+
+            z-index: 1;
+
+            transition: all .25s linear, z-index 0s linear 0s;
         }
     }
 }
