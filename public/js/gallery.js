@@ -14,10 +14,10 @@ let setPicture = (data, insertBefore) => {
     img.alt = "Sprite de " + data.name
 
     if (!insertBefore) {
-        galleryContainer.children[2].appendChild(item).append(img)
+        galleryContainer.children[3].appendChild(item).append(img)
     } else {
         firstItem = galleryContainer.querySelector(".item")
-        galleryContainer.children[2].insertBefore(item, firstItem)
+        galleryContainer.children[3].insertBefore(item, firstItem)
         item.append(img)
     }
 
@@ -27,9 +27,9 @@ let setPicture = (data, insertBefore) => {
 
 let changeView = (btn) => {
     if (btn.className !== "grid") {
-        galleryContainer.children[2].classList.add("list")
+        galleryContainer.children[3].classList.add("list")
     } else {
-        galleryContainer.children[2].classList.remove("list")
+        galleryContainer.children[3].classList.remove("list")
     }
 }
 
@@ -51,14 +51,17 @@ let initGallery = () => {
     })
 
     addBtnGallery.addEventListener("click", () => {
+        html.style.overflowY = "hidden"
         showForm()
     })
 
     sendBtnGallery.addEventListener("click", () => {
+        html.style.overflowY = ""
         addPicture()
     })
 
     closeBtnGallery.addEventListener("click", () => {
+        html.style.overflowY = ""
         showForm()
     })
 }
