@@ -32,9 +32,13 @@ input[type=submit] {
 }
 
 h1 {
+  align-items: center;
+  color: #fff;
   display: flex;
+  height: 50px;
   justify-content: center;
-  margin: 50px 0 75px 0;
+  margin: 50px 0;
+  z-index: 1;
 }
 
 main {
@@ -115,18 +119,39 @@ footer p span {
   margin: 5px 0 0 0;
 }
 
+.carousel__container {
+  display: flex;
+  height: 150px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+}
+.carousel__container .box {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+.carousel__container .box .picture {
+  display: flex;
+  height: 100%;
+  min-width: 100%;
+}
+.carousel__container .box .picture img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
 .feed__container {
   display: flex;
   flex-direction: column;
-  position: relative;
 }
-.feed__container > div {
+.feed__container > div:not(.carousel__container, .item) {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin: 50px 0;
   width: 100%;
 }
-.feed__container > div .refresh {
+.feed__container > div:not(.carousel__container, .item) .refresh {
   border-radius: 50px;
   height: 50px;
   width: 50px;
@@ -237,30 +262,30 @@ footer p span {
   display: flex;
   flex-direction: column;
 }
-.gallery__container > div:first-of-type {
+.gallery__container > div:nth-of-type(2) {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin: 50px 0;
   padding: 0 10px;
   width: 100%;
 }
-.gallery__container > div .grid,
-.gallery__container > div .list,
-.gallery__container > div .add {
+.gallery__container > div:nth-of-type(2) .grid,
+.gallery__container > div:nth-of-type(2) .list,
+.gallery__container > div:nth-of-type(2) .add {
   border-radius: 50px;
   height: 50px;
   width: 50px;
 }
-.gallery__container > div .grid {
+.gallery__container > div:nth-of-type(2) .grid {
   margin-right: 10px;
 }
-.gallery__container > div .list {
+.gallery__container > div:nth-of-type(2) .list {
   margin-left: 10px;
 }
-.gallery__container > div .add {
+.gallery__container > div:nth-of-type(2) .add {
   margin-left: auto;
 }
-.gallery__container > div .add svg {
+.gallery__container > div:nth-of-type(2) .add svg {
   height: auto;
   width: 75%;
 }
