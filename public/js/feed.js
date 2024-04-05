@@ -1,6 +1,5 @@
-let refreshBtn = document.querySelector("button.refresh")
-let formInput = document.querySelector(".feed__container form input")
-let formBtn = document.querySelector(".feed__container form button")
+let refreshBtnFeed = feedContainer !== null ? feedContainer.querySelector("button.refresh") : null
+let sendBtnFeed = feedContainer !== null ? feedContainer.querySelector("form button") : null
 
 let setItem = (data, insertBefore) => {
     item = document.createElement("div")
@@ -43,23 +42,12 @@ let refreshItems = () => {
     initDatas()
 }
 
-let getInputValue = () => {
-    value = parseInt(formInput.value)
-
-    if (formInput.value !== "" && typeof (value) === "number") {
-        pokemonIDs = []
-        pokemonIDs[0] = value
-        formInput.value = ""
-        getDatas(true)
-    }
-}
-
 let initFeed = () => {
-    refreshBtn.addEventListener("click", () => {
+    refreshBtnFeed.addEventListener("click", () => {
         refreshItems()
     })
 
-    formBtn.addEventListener("click", () => {
+    sendBtnFeed.addEventListener("click", () => {
         getInputValue()
     })
 }

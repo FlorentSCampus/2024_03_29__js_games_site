@@ -40,6 +40,7 @@ h1 {
 main {
   background: rgb(235, 235, 235);
   padding: 75px 10% 150px 10%;
+  position: relative;
 }
 
 header {
@@ -132,7 +133,7 @@ footer p span {
 }
 .feed__container form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-bottom: 50px;
 }
 .feed__container form > div {
@@ -166,6 +167,22 @@ footer p span {
   height: 50px;
   justify-content: center;
   width: 15%;
+}
+.feed__container form p {
+  align-items: center;
+  color: red;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px;
+  justify-content: center;
+  opacity: 0;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.25s linear;
+}
+.feed__container form p.visible {
+  opacity: 1;
 }
 .feed__container .item {
   align-items: center;
@@ -219,41 +236,40 @@ footer p span {
 .gallery__container {
   display: flex;
   flex-direction: column;
-  position: relative;
 }
-.gallery__container div:first-of-type {
+.gallery__container > div:first-of-type {
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
   padding: 0 10px;
   width: 100%;
 }
-.gallery__container div .grid,
-.gallery__container div .list,
-.gallery__container div .add {
+.gallery__container > div .grid,
+.gallery__container > div .list,
+.gallery__container > div .add {
   border-radius: 50px;
   height: 50px;
   width: 50px;
 }
-.gallery__container div .grid {
+.gallery__container > div .grid {
   margin-right: 10px;
 }
-.gallery__container div .list {
+.gallery__container > div .list {
   margin-left: 10px;
 }
-.gallery__container div .add {
+.gallery__container > div .add {
   margin-left: auto;
 }
-.gallery__container div .add svg {
-  height: 40px;
-  width: 40px;
+.gallery__container > div .add svg {
+  height: auto;
+  width: 75%;
 }
-.gallery__container div:last-of-type {
+.gallery__container > div:last-of-type {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
 }
-.gallery__container div:last-of-type .item {
+.gallery__container > div:last-of-type .item {
   align-items: center;
   background: #fff;
   border-radius: 25px;
@@ -265,17 +281,17 @@ footer p span {
   position: relative;
   width: calc(50% - 20px);
 }
-.gallery__container div:last-of-type .item::before {
+.gallery__container > div:last-of-type .item::before {
   content: "";
   padding-top: 100%;
 }
-.gallery__container div:last-of-type .item img {
+.gallery__container > div:last-of-type .item img {
   height: 75%;
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
 }
-.gallery__container div:last-of-type .item button {
+.gallery__container > div:last-of-type .item button {
   background: red;
   border-radius: 9px;
   box-shadow: none;
@@ -285,25 +301,119 @@ footer p span {
   top: 16px;
   width: 30px;
 }
-.gallery__container div:last-of-type .item button svg {
+.gallery__container > div:last-of-type .item button svg {
   fill: #fff;
   height: 100%;
   width: 20px;
 }
-.gallery__container div:last-of-type.list {
+.gallery__container > div:last-of-type.list {
   display: grid;
 }
-.gallery__container div:last-of-type.list .item {
+.gallery__container > div:last-of-type.list .item {
   height: 175px;
   width: calc(100% - 20px);
 }
-.gallery__container div:last-of-type.list .item::before {
+.gallery__container > div:last-of-type.list .item::before {
   content: none;
 }
-.gallery__container div:last-of-type.list .item img {
+.gallery__container > div:last-of-type.list .item img {
   height: auto;
   position: initial;
   width: 100%;
+}
+.gallery__container form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 75px);
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  padding: 50px;
+  position: absolute;
+  top: 75px;
+  width: 100%;
+  z-index: -1;
+  transition: all 0.25s linear, z-index 0s linear 0.25s;
+}
+.gallery__container form > div {
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+  display: flex;
+  width: 100%;
+}
+.gallery__container form > div:has(input:focus) {
+  background: rgb(200, 250, 200);
+}
+.gallery__container form > div input,
+.gallery__container form > div button {
+  background: transparent;
+}
+.gallery__container form > div input {
+  border: none;
+  border-radius: 50px 0 0 50px;
+  padding-left: 25px;
+  width: 85%;
+}
+.gallery__container form > div input:focus {
+  outline: none;
+}
+.gallery__container form > div > button {
+  align-items: center;
+  border-radius: 0 50px 50px 0;
+  box-shadow: none;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 15%;
+}
+.gallery__container form p {
+  align-items: center;
+  color: red;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px;
+  justify-content: center;
+  opacity: 0;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.25s linear;
+}
+.gallery__container form p.visible {
+  opacity: 1;
+}
+.gallery__container form > button {
+  align-items: center;
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: 50px;
+  box-shadow: none;
+  color: #fff;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin-top: 25px;
+  width: 50px;
+  transition: all 0.125s linear;
+}
+.gallery__container form > button svg {
+  fill: currentColor;
+  height: auto;
+  width: 75%;
+}
+.gallery__container form > button:hover {
+  border-color: red;
+  color: red;
+}
+.gallery__container form.open {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background: rgba(128, 128, 128, 0.5);
+  opacity: 1;
+  z-index: 1;
+  transition: all 0.25s linear, z-index 0s linear 0s;
 }
 
 @media (width <= 767.98px) {

@@ -1,6 +1,9 @@
-let gridBtn = document.querySelector("button.grid")
-let listBtn = document.querySelector("button.list")
-let addBtn = document.querySelector("button.add")
+let formGallery = galleryContainer !== null ? galleryContainer.querySelector("form") : null
+let gridBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.grid") : null
+let listBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.list") : null
+let addBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.add") : null
+let sendBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("form div > button") : null
+let closeBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("form > button") : null
 
 let setPicture = (data, insertBefore) => {
     item = document.createElement("div")
@@ -22,30 +25,40 @@ let setPicture = (data, insertBefore) => {
     deleteItem(item)
 }
 
-let addPicture = () => {
-    pokemonIDs = []
-    pokemonIDs[0] = (Math.floor(Math.random() * pokemonSpecies) + 1)
-    getDatas(true)
-}
-
 let changeView = (btn) => {
-    if (btn.classList.value !== "grid") {
+    if (btn.className !== "grid") {
         galleryContainer.children[2].classList.add("list")
     } else {
         galleryContainer.children[2].classList.remove("list")
     }
 }
 
+let addPicture = () => {
+    getInputValue()
+}
+
+let showForm = () => {
+    formGallery.classList.toggle("open")
+}
+
 let initGallery = () => {
-    gridBtn.addEventListener("click", (e) => {
+    gridBtnGallery.addEventListener("click", (e) => {
         changeView(e.currentTarget)
     })
 
-    listBtn.addEventListener("click", (e) => {
+    listBtnGallery.addEventListener("click", (e) => {
         changeView(e.currentTarget)
     })
 
-    addBtn.addEventListener("click", () => {
+    addBtnGallery.addEventListener("click", () => {
+        showForm()
+    })
+
+    sendBtnGallery.addEventListener("click", () => {
         addPicture()
+    })
+
+    closeBtnGallery.addEventListener("click", () => {
+        showForm()
     })
 }
