@@ -1,5 +1,6 @@
 <div class="gallery__container">
     <h1>GALLERY</h1>
+    <?php require_once "template/carousel.tpl.php" ?>
     <div>
         <button class="grid">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
