@@ -89,7 +89,6 @@ let checkCard = (attr) => {
             if (card.classList.contains("flip")) {
                 if (!same) {
                     if (card.dataset.same !== "true") {
-                        console.log(card);
                         setTimeout(() => {
                             card.classList.remove("flip")
                         }, 1000)
