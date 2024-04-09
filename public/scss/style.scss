@@ -42,6 +42,15 @@ h1 {
     z-index: 1;
 }
 
+h2 {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin: 25px 0;
+    width: 100%;
+}
+
 main {
     background: rgba(235, 235, 235, 1);
     padding: 75px 10% 150px 10%;
@@ -156,11 +165,16 @@ footer {
     }
 }
 
-.feed__container {
+.feed__container,
+.gallery__container,
+.game__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
 
-    > div:not(.carousel__container, .item) {
+.feed__container {
+    > div:not(.carousel__container, .item__container) {
         display: flex;
         justify-content: center;
         margin: 50px 0;
@@ -198,7 +212,7 @@ footer {
                 border: none;
                 border-radius: 50px 0 0 50px;
                 padding-left: 25px;
-                width: 85%;
+                width: 100%;
 
                 &:focus {
                     outline: none;
@@ -212,7 +226,7 @@ footer {
                 display: flex;
                 height: 50px;
                 justify-content: center;
-                width: 15%;
+                min-width: 50px;
             }
         }
 
@@ -236,70 +250,68 @@ footer {
         }
     }
 
-    .item {
-        align-items: center;
-        background: #fff;
-        border-radius: 25px;
-        box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+    .item__container {
         display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 5% 10% 15% 10%;
-        position: relative;
+        justify-content: space-between;
+        width: 100%;
 
-        &:not(:last-of-type) {
-            margin-bottom: 25px;
-        }
-
-        img {
-            padding-bottom: 5%;
-            width: 50%;
-        }
-
-        .text {
+        .item {
             align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
             display: flex;
             flex-direction: column;
+            margin-bottom: 25px;
+            position: relative;
 
-            h2 {
-                margin-bottom: 25px;
+            img {
+                padding-bottom: 5%;
+                width: 50%;
             }
 
-            p {
-                &:nth-of-type(2) {
-                    text-align: center;
+            .text {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+
+                h2 {
+                    margin-bottom: 25px;
+                }
+
+                p {
+                    &:nth-of-type(2) {
+                        text-align: center;
+                    }
+                }
+
+                h2,
+                p {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
                 }
             }
 
-            h2,
-            p {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
-        }
+            button {
+                background: red;
+                border-radius: calc(25px - 16px);
+                box-shadow: none;
+                height: 50px;
+                position: absolute;
+                right: 16px;
+                top: 16px;
+                width: 50px;
 
-        button {
-            background: red;
-            border-radius: calc(25px - 16px);
-            box-shadow: none;
-            height: 50px;
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            width: 50px;
-
-            svg {
-                fill: #fff;
+                svg {
+                    fill: #fff;
+                }
             }
         }
     }
 }
 
 .gallery__container {
-    display: flex;
-    flex-direction: column;
-
     > div {
         &:nth-of-type(2) {
             display: flex;
@@ -333,71 +345,71 @@ footer {
                 }
             }
         }
+    }
 
-        &:last-of-type {
-            $margin: 10px;
+    .item__container {
+        $margin: 10px;
 
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        width: 100%;
+
+        .item {
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
             display: flex;
-            flex-wrap: wrap;
-            margin: 0;
+            justify-content: center;
+            margin: $margin;
+            overflow: hidden;
+            position: relative;
+
+            &::before {
+                content: "";
+                padding-top: 100%;
+            }
+
+            img {
+                height: 75%;
+                object-fit: cover;
+                position: absolute;
+            }
+
+            button {
+                background: red;
+                border-radius: calc(25px - 16px);
+                box-shadow: none;
+                height: 30px;
+                position: absolute;
+                right: 16px;
+                top: 16px;
+                width: 30px;
+    
+                svg {
+                    fill: #fff;
+                    height: 100%;
+                    width: 20px;
+                }
+            }
+        }
+
+        &.list {
+            display: grid;
 
             .item {
-                align-items: center;
-                background: #fff;
-                border-radius: 25px;
-                box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
-                display: flex;
-                justify-content: center;
-                margin: $margin;
-                overflow: hidden;
-                position: relative;
-                width: calc((100% / 2) - ($margin * 2));
+                height: 175px;
+                width: calc(100% - ($margin * 2));
 
                 &::before {
-                    content: "";
-                    padding-top: 100%;
+                    content: none;
                 }
 
                 img {
-                    height: 75%;
-                    object-fit: cover;
-                    position: absolute;
-                }
-
-                button {
-                    background: red;
-                    border-radius: calc(25px - 16px);
-                    box-shadow: none;
-                    height: 30px;
-                    position: absolute;
-                    right: 16px;
-                    top: 16px;
-                    width: 30px;
-        
-                    svg {
-                        fill: #fff;
-                        height: 100%;
-                        width: 20px;
-                    }
-                }
-            }
-
-            &.list {
-                display: grid;
-
-                .item {
-                    height: 175px;
-                    width: calc(100% - ($margin * 2));
-
-                    &::before {
-                        content: none;
-                    }
-
-                    img {
-                        height: auto;
-                        position: initial;
-                        width: 100%;
-                    }
+                    height: auto;
+                    position: initial;
+                    width: 100%;
                 }
             }
         }
@@ -424,7 +436,6 @@ footer {
             border-radius: 50px;
             box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
             display: flex;
-            width: 100%;
             
             &:has(input:focus) {
                 background: rgba(200, 250, 200, 1);
@@ -439,7 +450,7 @@ footer {
                 border: none;
                 border-radius: 50px 0 0 50px;
                 padding-left: 25px;
-                width: 85%;
+                width: 100%;
 
                 &:focus {
                     outline: none;
@@ -453,7 +464,7 @@ footer {
                 display: flex;
                 height: 50px;
                 justify-content: center;
-                width: 15%;
+                min-width: 50px;
             }
         }
 
@@ -515,16 +526,164 @@ footer {
     }
 }
 
+.game__container {
+    .memory {
+        width: 100%;
+
+        .difficulties {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 50px 0;
+            width: 100%;
+
+            button {
+                align-items: center;
+                border-radius: 50px;
+                display: flex;
+                height: 50px;
+                justify-content: center;
+                width: 20%;
+            }
+        }
+
+        .card__container {
+            $margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .card {
+                border-radius: 25px;
+                cursor: pointer;
+                height: 250px;
+                margin: $margin;
+                position: relative;
+                width: calc((100% / 5) - ($margin * 2));
+
+                .front,
+                .back {
+                    border-radius: inherit;
+                    box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
+                    height: 100%;
+                    position: absolute;
+                    width: 100%;
+
+                    transition: transform .25s linear;
+                }
+
+                .front {
+                    backface-visibility: hidden;
+                    background: #000;
+                    transform: rotateY(0deg);
+                    z-index: 1;
+                }
+
+                .back {
+                    background: #fff;
+                    display: flex;
+                    transform: rotateY(180deg);
+
+                    img {
+                        object-fit: contain;
+                    }
+                }
+
+                &.flip {
+                    .front,
+                    .back {
+                        transition: transform .25s linear;
+                    }
+
+                    .front {
+                        transform: rotateY(180deg);
+                    }
+
+                    .back {
+                        transform: rotateY(0deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (width <= 767.98px) {
     main {
         padding-left: 16px;
         padding-right: 16px;
     }
 
+    .feed__container {
+        form {
+            width: 100%;
+        }
+
+        .item__container {
+            flex-direction: column;
+
+            .item {
+                padding: 5% 10% 15% 10%;
+            }
+        }
+    }
+
+    .gallery__container {
+        .item__container {
+            $margin: 10px;
+
+            .item {
+                width: calc((100% / 2) - ($margin * 2));
+            }
+        }
+
+        form {
+            > div {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (768px <= width) {
+    .item__container {
+        flex-wrap: wrap;
+    }
+}
+
+@media (768px <= width <= 1199.98px) {
+    .feed__container {
+        form {
+            width: 75%;
+        }
+
+        .item__container {
+            .item {
+                padding: 5% 5% 10% 5%;
+                width: calc(50% - (25px / 2));
+            }
+        }
+    }
+
+    .gallery__container {
+        .item__container {
+            $margin: 10px;
+
+            .item {
+                width: calc((100% / 3) - ($margin * 2));
+            }
+        }
+
+        form {
+            > div {
+                width: 75%;
+            }
+        }
+    }
+}
+
+@media (width <= 1199.98px) {
     header {
         justify-content: center;
-        padding-left: 16px;
-        padding-right: 16px;
 
         .container {
             height: 100%;
@@ -642,6 +801,33 @@ footer {
     }
 }
 
-@media (768px <= width <= 1199.98px) {
-    //
+@media (1200px <= width) {
+    .feed__container {
+        form {
+            width: 50%;
+        }
+
+        .item__container {
+            .item {
+                padding: 5% 5% 10% 5%;
+                width: calc((100% / 3) - (25px / 2));
+            }
+        }
+    }
+
+    .gallery__container {
+        .item__container {
+            $margin: 10px;
+
+            .item {
+                width: calc((100% / 5) - ($margin * 2));
+            }
+        }
+
+        form {
+            > div {
+                width: 50%;
+            }
+        }
+    }
 }
