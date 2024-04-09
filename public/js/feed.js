@@ -1,6 +1,7 @@
-let refreshBtn = document.querySelector("button.refresh")
-let formInput = document.querySelector(".feed__container form input")
-let formBtn = document.querySelector(".feed__container form button")
+let itemContainer = feedContainer !== null ? feedContainer.querySelector(".item__container") : null
+let refreshBtnFeed = feedContainer !== null ? feedContainer.querySelector("button.refresh") : null
+let sendBtnFeed = feedContainer !== null ? feedContainer.querySelector("form button") : null
+let displayFeed = 2
 
 let setItem = (data, insertBefore) => {
     item = document.createElement("div")
@@ -19,12 +20,15 @@ let setItem = (data, insertBefore) => {
     p2.innerText = data.desc
 
     if (!insertBefore) {
-        feedContainer.appendChild(item).append(img, div), div.append(p1, h2, p2)
+        itemContainer.appendChild(item).append(img, div), div.append(p1, h2, p2)
     } else {
-        firstItem = feedContainer.querySelector(".item")
-        feedContainer.insertBefore(item, firstItem)
+        firstItem = itemContainer.querySelector(".item")
+        itemContainer.insertBefore(item, firstItem)
         item.append(img, div), div.append(p1, h2, p2)
     }
+
+    setDeleteBtn(item)
+    deleteItem(item)
 }
 
 let removeItems = (items) => {
@@ -34,29 +38,20 @@ let removeItems = (items) => {
 }
 
 let refreshItems = () => {
-    items = document.querySelectorAll(".feed__container > .item")
+    items = itemContainer.querySelectorAll(".item")
     
     removeItems(items)
-    initDatas()
-}
-
-let getInputValue = () => {
-    value = parseInt(formInput.value)
-
-    if (formInput.value !== "" && typeof (value) === "number") {
-        pokemonIDs = []
-        pokemonIDs[0] = value
-        formInput.value = ""
-        getDatas(true)
-    }
+    initDatas(displayFeed)
 }
 
 let initFeed = () => {
-    refreshBtn.addEventListener("click", () => {
+    initDatas(displayFeed)
+
+    refreshBtnFeed.addEventListener("click", () => {
         refreshItems()
     })
 
-    formBtn.addEventListener("click", () => {
+    sendBtnFeed.addEventListener("click", () => {
         getInputValue()
     })
 }

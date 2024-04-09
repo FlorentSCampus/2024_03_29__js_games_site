@@ -32,14 +32,28 @@ input[type=submit] {
 }
 
 h1 {
+  align-items: center;
+  color: #fff;
   display: flex;
+  height: 50px;
   justify-content: center;
-  margin: 50px 0 75px 0;
+  margin: 50px 0;
+  z-index: 1;
+}
+
+h2 {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 25px 0;
+  width: 100%;
 }
 
 main {
   background: rgb(235, 235, 235);
   padding: 75px 10% 150px 10%;
+  position: relative;
 }
 
 header {
@@ -114,25 +128,50 @@ footer p span {
   margin: 5px 0 0 0;
 }
 
-.feed__container {
+.carousel__container {
   display: flex;
-  flex-direction: column;
-  position: relative;
+  height: 150px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
 }
-.feed__container > div {
+.carousel__container .box {
   display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
+  transition: transform 1s ease-in-out;
+}
+.carousel__container .box .picture {
+  display: flex;
+  height: 100%;
+  min-width: 100%;
+}
+.carousel__container .box .picture img {
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
-.feed__container > div .refresh {
+
+.feed__container,
+.gallery__container,
+.game__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feed__container > div:not(.carousel__container, .item__container) {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+  width: 100%;
+}
+.feed__container > div:not(.carousel__container, .item__container) .refresh {
   border-radius: 50px;
   height: 50px;
   width: 50px;
 }
 .feed__container form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-bottom: 50px;
 }
 .feed__container form > div {
@@ -153,7 +192,7 @@ footer p span {
   border: none;
   border-radius: 50px 0 0 50px;
   padding-left: 25px;
-  width: 85%;
+  width: 100%;
 }
 .feed__container form > div input:focus {
   outline: none;
@@ -165,81 +204,108 @@ footer p span {
   display: flex;
   height: 50px;
   justify-content: center;
-  width: 15%;
+  min-width: 50px;
 }
-.feed__container .item {
+.feed__container form p {
+  align-items: center;
+  color: red;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px;
+  justify-content: center;
+  opacity: 0;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.25s linear;
+}
+.feed__container form p.visible {
+  opacity: 1;
+}
+.feed__container .item__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.feed__container .item__container .item {
   align-items: center;
   background: #fff;
   border-radius: 25px;
   box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 5% 10% 15% 10%;
-}
-.feed__container .item:not(:last-of-type) {
   margin-bottom: 25px;
+  position: relative;
 }
-.feed__container .item img {
+.feed__container .item__container .item img {
   padding-bottom: 5%;
   width: 50%;
 }
-.feed__container .item .text {
+.feed__container .item__container .item .text {
   align-items: center;
   display: flex;
   flex-direction: column;
 }
-.feed__container .item .text h2 {
+.feed__container .item__container .item .text h2 {
   margin-bottom: 25px;
 }
-.feed__container .item .text p:nth-of-type(2) {
+.feed__container .item__container .item .text p:nth-of-type(2) {
   text-align: center;
 }
-.feed__container .item .text h2,
-.feed__container .item .text p {
+.feed__container .item__container .item .text h2,
+.feed__container .item__container .item .text p {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-
-.gallery__container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.feed__container .item__container .item button {
+  background: red;
+  border-radius: 9px;
+  box-shadow: none;
+  height: 50px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 50px;
 }
-.gallery__container div:first-of-type {
+.feed__container .item__container .item button svg {
+  fill: #fff;
+}
+
+.gallery__container > div:nth-of-type(2) {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin: 50px 0;
   padding: 0 10px;
   width: 100%;
 }
-.gallery__container div .grid,
-.gallery__container div .list,
-.gallery__container div .add {
+.gallery__container > div:nth-of-type(2) .grid,
+.gallery__container > div:nth-of-type(2) .list,
+.gallery__container > div:nth-of-type(2) .add {
   border-radius: 50px;
   height: 50px;
   width: 50px;
 }
-.gallery__container div .grid {
+.gallery__container > div:nth-of-type(2) .grid {
   margin-right: 10px;
 }
-.gallery__container div .list {
+.gallery__container > div:nth-of-type(2) .list {
   margin-left: 10px;
 }
-.gallery__container div .add {
+.gallery__container > div:nth-of-type(2) .add {
   margin-left: auto;
 }
-.gallery__container div .add svg {
-  height: 40px;
-  width: 40px;
+.gallery__container > div:nth-of-type(2) .add svg {
+  height: auto;
+  width: 75%;
 }
-.gallery__container div:last-of-type {
+.gallery__container .item__container {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+  width: 100%;
 }
-.gallery__container div:last-of-type .item {
+.gallery__container .item__container .item {
   align-items: center;
   background: #fff;
   border-radius: 25px;
@@ -249,32 +315,204 @@ footer p span {
   margin: 10px;
   overflow: hidden;
   position: relative;
-  width: calc(50% - 20px);
 }
-.gallery__container div:last-of-type .item::before {
+.gallery__container .item__container .item::before {
   content: "";
   padding-top: 100%;
 }
-.gallery__container div:last-of-type .item img {
+.gallery__container .item__container .item img {
   height: 75%;
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
 }
-.gallery__container div:last-of-type.list {
+.gallery__container .item__container .item button {
+  background: red;
+  border-radius: 9px;
+  box-shadow: none;
+  height: 30px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 30px;
+}
+.gallery__container .item__container .item button svg {
+  fill: #fff;
+  height: 100%;
+  width: 20px;
+}
+.gallery__container .item__container.list {
   display: grid;
 }
-.gallery__container div:last-of-type.list .item {
+.gallery__container .item__container.list .item {
   height: 175px;
   width: calc(100% - 20px);
 }
-.gallery__container div:last-of-type.list .item::before {
+.gallery__container .item__container.list .item::before {
   content: none;
 }
-.gallery__container div:last-of-type.list .item img {
+.gallery__container .item__container.list .item img {
   height: auto;
   position: initial;
   width: 100%;
+}
+.gallery__container form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 75px);
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  padding: 50px;
+  position: absolute;
+  top: 75px;
+  width: 100%;
+  z-index: -1;
+  transition: all 0.25s linear, z-index 0s linear 0.25s;
+}
+.gallery__container form > div {
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
+  display: flex;
+}
+.gallery__container form > div:has(input:focus) {
+  background: rgb(200, 250, 200);
+}
+.gallery__container form > div input,
+.gallery__container form > div button {
+  background: transparent;
+}
+.gallery__container form > div input {
+  border: none;
+  border-radius: 50px 0 0 50px;
+  padding-left: 25px;
+  width: 100%;
+}
+.gallery__container form > div input:focus {
+  outline: none;
+}
+.gallery__container form > div > button {
+  align-items: center;
+  border-radius: 0 50px 50px 0;
+  box-shadow: none;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  min-width: 50px;
+}
+.gallery__container form p {
+  align-items: center;
+  color: red;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  height: 50px;
+  justify-content: center;
+  opacity: 0;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.25s linear;
+}
+.gallery__container form p.visible {
+  opacity: 1;
+}
+.gallery__container form > button {
+  align-items: center;
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: 50px;
+  box-shadow: none;
+  color: #fff;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin-top: 25px;
+  width: 50px;
+  transition: all 0.125s linear;
+}
+.gallery__container form > button svg {
+  fill: currentColor;
+  height: auto;
+  width: 75%;
+}
+.gallery__container form > button:hover {
+  border-color: red;
+  color: red;
+}
+.gallery__container form.open {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background: rgba(128, 128, 128, 0.5);
+  opacity: 1;
+  z-index: 1;
+  transition: all 0.25s linear, z-index 0s linear 0s;
+}
+
+.game__container .memory {
+  width: 100%;
+}
+.game__container .memory .difficulties {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 50px 0;
+  width: 100%;
+}
+.game__container .memory .difficulties button {
+  align-items: center;
+  border-radius: 50px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 20%;
+}
+.game__container .memory .card__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.game__container .memory .card__container .card {
+  border-radius: 25px;
+  cursor: pointer;
+  height: 250px;
+  margin: 10px;
+  position: relative;
+  width: calc(20% - 20px);
+}
+.game__container .memory .card__container .card .front,
+.game__container .memory .card__container .card .back {
+  border-radius: inherit;
+  box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  transition: transform 0.25s linear;
+}
+.game__container .memory .card__container .card .front {
+  backface-visibility: hidden;
+  background: #000;
+  transform: rotateY(0deg);
+  z-index: 1;
+}
+.game__container .memory .card__container .card .back {
+  background: #fff;
+  display: flex;
+  transform: rotateY(180deg);
+}
+.game__container .memory .card__container .card .back img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.game__container .memory .card__container .card.flip .front,
+.game__container .memory .card__container .card.flip .back {
+  transition: transform 0.25s linear;
+}
+.game__container .memory .card__container .card.flip .front {
+  transform: rotateY(180deg);
+}
+.game__container .memory .card__container .card.flip .back {
+  transform: rotateY(0deg);
 }
 
 @media (width <= 767.98px) {
@@ -282,10 +520,45 @@ footer p span {
     padding-left: 16px;
     padding-right: 16px;
   }
+  .feed__container form {
+    width: 100%;
+  }
+  .feed__container .item__container {
+    flex-direction: column;
+  }
+  .feed__container .item__container .item {
+    padding: 5% 10% 15% 10%;
+  }
+  .gallery__container .item__container .item {
+    width: calc(50% - 20px);
+  }
+  .gallery__container form > div {
+    width: 100%;
+  }
+}
+@media (768px <= width) {
+  .item__container {
+    flex-wrap: wrap;
+  }
+}
+@media (768px <= width <= 1199.98px) {
+  .feed__container form {
+    width: 75%;
+  }
+  .feed__container .item__container .item {
+    padding: 5% 5% 10% 5%;
+    width: calc(50% - 12.5px);
+  }
+  .gallery__container .item__container .item {
+    width: calc(33.3333333333% - 20px);
+  }
+  .gallery__container form > div {
+    width: 75%;
+  }
+}
+@media (width <= 1199.98px) {
   header {
     justify-content: center;
-    padding-left: 16px;
-    padding-right: 16px;
   }
   header .container {
     height: 100%;
@@ -376,5 +649,20 @@ footer p span {
     opacity: 1;
     transform: translateY(75px);
     transition: opacity 0.25s linear, transform 0.25s linear;
+  }
+}
+@media (1200px <= width) {
+  .feed__container form {
+    width: 50%;
+  }
+  .feed__container .item__container .item {
+    padding: 5% 5% 10% 5%;
+    width: calc(33.3333333333% - 12.5px);
+  }
+  .gallery__container .item__container .item {
+    width: calc(20% - 20px);
+  }
+  .gallery__container form > div {
+    width: 50%;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,10 @@
-let gridBtn = document.querySelector("button.grid")
-let listBtn = document.querySelector("button.list")
-let addBtn = document.querySelector("button.add")
+let formGallery = galleryContainer !== null ? galleryContainer.querySelector("form") : null
+let gridBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.grid") : null
+let listBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.list") : null
+let addBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.add") : null
+let sendBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("form div > button") : null
+let closeBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("form > button") : null
+let displayGallery = 2
 
 let setPicture = (data, insertBefore) => {
     item = document.createElement("div")
@@ -11,38 +15,56 @@ let setPicture = (data, insertBefore) => {
     img.alt = "Sprite de " + data.name
 
     if (!insertBefore) {
-        galleryContainer.children[2].appendChild(item).append(img)
+        galleryContainer.children[3].appendChild(item).append(img)
     } else {
         firstItem = galleryContainer.querySelector(".item")
-        galleryContainer.children[2].insertBefore(item, firstItem)
+        galleryContainer.children[3].insertBefore(item, firstItem)
         item.append(img)
+    }
+
+    setDeleteBtn(item)
+    deleteItem(item)
+}
+
+let changeView = (btn) => {
+    if (btn.className !== "grid") {
+        galleryContainer.children[3].classList.add("list")
+    } else {
+        galleryContainer.children[3].classList.remove("list")
     }
 }
 
 let addPicture = () => {
-    pokemonIDs = []
-    pokemonIDs[0] = (Math.floor(Math.random() * pokemonSpecies) + 1)
-    getDatas(true)
+    getInputValue()
 }
 
-let changeView = (btn) => {
-    if (btn.classList.value !== "grid") {
-        galleryContainer.children[2].classList.add("list")
-    } else {
-        galleryContainer.children[2].classList.remove("list")
-    }
+let showForm = () => {
+    formGallery.classList.toggle("open")
 }
 
 let initGallery = () => {
-    gridBtn.addEventListener("click", (e) => {
+    initDatas(displayGallery)
+
+    gridBtnGallery.addEventListener("click", (e) => {
         changeView(e.currentTarget)
     })
 
-    listBtn.addEventListener("click", (e) => {
+    listBtnGallery.addEventListener("click", (e) => {
         changeView(e.currentTarget)
     })
 
-    addBtn.addEventListener("click", () => {
+    addBtnGallery.addEventListener("click", () => {
+        html.style.overflowY = "hidden"
+        showForm()
+    })
+
+    sendBtnGallery.addEventListener("click", () => {
+        html.style.overflowY = ""
         addPicture()
+    })
+
+    closeBtnGallery.addEventListener("click", () => {
+        html.style.overflowY = ""
+        showForm()
     })
 }

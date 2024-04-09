@@ -1,8 +1,7 @@
-let display = 9
 let pokemonSpecies = 1025
 let pokemonIDs = []
 
-let setPokemonIDs = () => {
+let setPokemonIDs = (display) => {
     for (i = 0; i < display; i++) {
         pokemonIDs[i] = (Math.floor(Math.random() * pokemonSpecies) + 1)
     }
@@ -53,6 +52,7 @@ let getDesc = (obj) => {
 let setData = (id, img, name, desc, insertBefore) => {
     if (feedContainer !== null) setItem({ id: id, img: img, name: name, desc: desc }, insertBefore)
     if (galleryContainer !== null) setPicture({ img: img, name: name }, insertBefore)
+    if (gameContainer !== null) setCard({ img: img, name: name })
 }
 
 let getDatas = (insertBefore = false) => {
@@ -76,7 +76,7 @@ let getDatas = (insertBefore = false) => {
     })
 }
 
-let initDatas = () => {
-    setPokemonIDs()
+let initDatas = (displayNb) => {
+    setPokemonIDs(displayNb)
     getDatas()
 }
