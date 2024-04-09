@@ -1,5 +1,7 @@
+let itemContainer = feedContainer !== null ? feedContainer.querySelector(".item__container") : null
 let refreshBtnFeed = feedContainer !== null ? feedContainer.querySelector("button.refresh") : null
 let sendBtnFeed = feedContainer !== null ? feedContainer.querySelector("form button") : null
+let displayFeed = 2
 
 let setItem = (data, insertBefore) => {
     item = document.createElement("div")
@@ -18,10 +20,10 @@ let setItem = (data, insertBefore) => {
     p2.innerText = data.desc
 
     if (!insertBefore) {
-        feedContainer.appendChild(item).append(img, div), div.append(p1, h2, p2)
+        itemContainer.appendChild(item).append(img, div), div.append(p1, h2, p2)
     } else {
-        firstItem = feedContainer.querySelector(".item")
-        feedContainer.insertBefore(item, firstItem)
+        firstItem = itemContainer.querySelector(".item")
+        itemContainer.insertBefore(item, firstItem)
         item.append(img, div), div.append(p1, h2, p2)
     }
 
@@ -36,13 +38,15 @@ let removeItems = (items) => {
 }
 
 let refreshItems = () => {
-    items = document.querySelectorAll(".feed__container > .item")
+    items = itemContainer.querySelectorAll(".item")
     
     removeItems(items)
-    initDatas()
+    initDatas(displayFeed)
 }
 
 let initFeed = () => {
+    initDatas(displayFeed)
+
     refreshBtnFeed.addEventListener("click", () => {
         refreshItems()
     })
