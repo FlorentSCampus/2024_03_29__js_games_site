@@ -1,13 +1,13 @@
 <div class="carousel__container">
     <div class="box">
         <div class="picture">
-            <img src="img/jpg/1028820-legendes-pokemon-z-a.jpg" alt="">
+            <img src="img/webp/9fc90986-b78b-4ca0-833a-98e924e3b9cc_50.webp" alt="Pokémon ads">
         </div>
         <div class="picture">
-            <img src="img/png/9fc90986-b78b-4ca0-833a-98e924e3b9cc.png" alt="">
+            <img src="img/webp/1028820-legendes-pokemon-z-a_1_50.webp" alt="Pokémon ads">
         </div>
         <div class="picture">
-            <img src="img/jpg/pokemongofest2019.jpg" alt="">
+            <img src="img/webp/1028820-legendes-pokemon-z-a_1500x283.webp" alt="Pokémon ads">
         </div>
     </div>
 </div>

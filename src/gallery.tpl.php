@@ -18,7 +18,7 @@
             </svg>
         </button>
     </div>
-    <div></div>
+    <div class="item__container"></div>
     <form>
         <div>
             <input id="nb" type="text" placeholder="Please enter a number" />

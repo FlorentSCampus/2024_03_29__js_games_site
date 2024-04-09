@@ -4,6 +4,7 @@ let listBtnGallery = galleryContainer !== null ? galleryContainer.querySelector(
 let addBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("button.add") : null
 let sendBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("form div > button") : null
 let closeBtnGallery = galleryContainer !== null ? galleryContainer.querySelector("form > button") : null
+let displayGallery = 2
 
 let setPicture = (data, insertBefore) => {
     item = document.createElement("div")
@@ -42,6 +43,8 @@ let showForm = () => {
 }
 
 let initGallery = () => {
+    initDatas(displayGallery)
+
     gridBtnGallery.addEventListener("click", (e) => {
         changeView(e.currentTarget)
     })
