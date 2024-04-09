@@ -41,6 +41,15 @@ h1 {
   z-index: 1;
 }
 
+h2 {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 25px 0;
+  width: 100%;
+}
+
 main {
   background: rgb(235, 235, 235);
   padding: 75px 10% 150px 10%;
@@ -141,17 +150,21 @@ footer p span {
   width: 100%;
 }
 
-.feed__container {
+.feed__container,
+.gallery__container,
+.game__container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
-.feed__container > div:not(.carousel__container, .item) {
+
+.feed__container > div:not(.carousel__container, .item__container) {
   display: flex;
   justify-content: center;
   margin: 50px 0;
   width: 100%;
 }
-.feed__container > div:not(.carousel__container, .item) .refresh {
+.feed__container > div:not(.carousel__container, .item__container) .refresh {
   border-radius: 50px;
   height: 50px;
   width: 50px;
@@ -179,7 +192,7 @@ footer p span {
   border: none;
   border-radius: 50px 0 0 50px;
   padding-left: 25px;
-  width: 85%;
+  width: 100%;
 }
 .feed__container form > div input:focus {
   outline: none;
@@ -191,7 +204,7 @@ footer p span {
   display: flex;
   height: 50px;
   justify-content: center;
-  width: 15%;
+  min-width: 50px;
 }
 .feed__container form p {
   align-items: center;
@@ -209,42 +222,43 @@ footer p span {
 .feed__container form p.visible {
   opacity: 1;
 }
-.feed__container .item {
+.feed__container .item__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.feed__container .item__container .item {
   align-items: center;
   background: #fff;
   border-radius: 25px;
   box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 5% 10% 15% 10%;
+  margin-bottom: 25px;
   position: relative;
 }
-.feed__container .item:not(:last-of-type) {
-  margin-bottom: 25px;
-}
-.feed__container .item img {
+.feed__container .item__container .item img {
   padding-bottom: 5%;
   width: 50%;
 }
-.feed__container .item .text {
+.feed__container .item__container .item .text {
   align-items: center;
   display: flex;
   flex-direction: column;
 }
-.feed__container .item .text h2 {
+.feed__container .item__container .item .text h2 {
   margin-bottom: 25px;
 }
-.feed__container .item .text p:nth-of-type(2) {
+.feed__container .item__container .item .text p:nth-of-type(2) {
   text-align: center;
 }
-.feed__container .item .text h2,
-.feed__container .item .text p {
+.feed__container .item__container .item .text h2,
+.feed__container .item__container .item .text p {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-.feed__container .item button {
+.feed__container .item__container .item button {
   background: red;
   border-radius: 9px;
   box-shadow: none;
@@ -254,14 +268,10 @@ footer p span {
   top: 16px;
   width: 50px;
 }
-.feed__container .item button svg {
+.feed__container .item__container .item button svg {
   fill: #fff;
 }
 
-.gallery__container {
-  display: flex;
-  flex-direction: column;
-}
 .gallery__container > div:nth-of-type(2) {
   display: flex;
   justify-content: center;
@@ -289,12 +299,13 @@ footer p span {
   height: auto;
   width: 75%;
 }
-.gallery__container > div:last-of-type {
+.gallery__container .item__container {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+  width: 100%;
 }
-.gallery__container > div:last-of-type .item {
+.gallery__container .item__container .item {
   align-items: center;
   background: #fff;
   border-radius: 25px;
@@ -304,19 +315,18 @@ footer p span {
   margin: 10px;
   overflow: hidden;
   position: relative;
-  width: calc(50% - 20px);
 }
-.gallery__container > div:last-of-type .item::before {
+.gallery__container .item__container .item::before {
   content: "";
   padding-top: 100%;
 }
-.gallery__container > div:last-of-type .item img {
+.gallery__container .item__container .item img {
   height: 75%;
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
 }
-.gallery__container > div:last-of-type .item button {
+.gallery__container .item__container .item button {
   background: red;
   border-radius: 9px;
   box-shadow: none;
@@ -326,22 +336,22 @@ footer p span {
   top: 16px;
   width: 30px;
 }
-.gallery__container > div:last-of-type .item button svg {
+.gallery__container .item__container .item button svg {
   fill: #fff;
   height: 100%;
   width: 20px;
 }
-.gallery__container > div:last-of-type.list {
+.gallery__container .item__container.list {
   display: grid;
 }
-.gallery__container > div:last-of-type.list .item {
+.gallery__container .item__container.list .item {
   height: 175px;
   width: calc(100% - 20px);
 }
-.gallery__container > div:last-of-type.list .item::before {
+.gallery__container .item__container.list .item::before {
   content: none;
 }
-.gallery__container > div:last-of-type.list .item img {
+.gallery__container .item__container.list .item img {
   height: auto;
   position: initial;
   width: 100%;
@@ -366,7 +376,6 @@ footer p span {
   border-radius: 50px;
   box-shadow: 0 10px 10px -10px rgb(128, 128, 128);
   display: flex;
-  width: 100%;
 }
 .gallery__container form > div:has(input:focus) {
   background: rgb(200, 250, 200);
@@ -379,7 +388,7 @@ footer p span {
   border: none;
   border-radius: 50px 0 0 50px;
   padding-left: 25px;
-  width: 85%;
+  width: 100%;
 }
 .gallery__container form > div input:focus {
   outline: none;
@@ -391,7 +400,7 @@ footer p span {
   display: flex;
   height: 50px;
   justify-content: center;
-  width: 15%;
+  min-width: 50px;
 }
 .gallery__container form p {
   align-items: center;
@@ -441,15 +450,115 @@ footer p span {
   transition: all 0.25s linear, z-index 0s linear 0s;
 }
 
+.game__container .memory {
+  width: 100%;
+}
+.game__container .memory .difficulties {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 50px 0;
+  width: 100%;
+}
+.game__container .memory .difficulties button {
+  align-items: center;
+  border-radius: 50px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 20%;
+}
+.game__container .memory .card__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.game__container .memory .card__container .card {
+  border-radius: 25px;
+  cursor: pointer;
+  height: 250px;
+  margin: 10px;
+  position: relative;
+  width: calc(20% - 20px);
+}
+.game__container .memory .card__container .card .front,
+.game__container .memory .card__container .card .back {
+  border-radius: inherit;
+  box-shadow: 0 10px 5px -5px rgb(128, 128, 128);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  transition: transform 0.25s linear;
+}
+.game__container .memory .card__container .card .front {
+  backface-visibility: hidden;
+  background: #000;
+  transform: rotateY(0deg);
+  z-index: 1;
+}
+.game__container .memory .card__container .card .back {
+  background: #fff;
+  display: flex;
+  transform: rotateY(180deg);
+}
+.game__container .memory .card__container .card .back img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.game__container .memory .card__container .card.flip .front,
+.game__container .memory .card__container .card.flip .back {
+  transition: transform 0.25s linear;
+}
+.game__container .memory .card__container .card.flip .front {
+  transform: rotateY(180deg);
+}
+.game__container .memory .card__container .card.flip .back {
+  transform: rotateY(0deg);
+}
+
 @media (width <= 767.98px) {
   main {
     padding-left: 16px;
     padding-right: 16px;
   }
+  .feed__container form {
+    width: 100%;
+  }
+  .feed__container .item__container {
+    flex-direction: column;
+  }
+  .feed__container .item__container .item {
+    padding: 5% 10% 15% 10%;
+  }
+  .gallery__container .item__container .item {
+    width: calc(50% - 20px);
+  }
+  .gallery__container form > div {
+    width: 100%;
+  }
+}
+@media (768px <= width) {
+  .item__container {
+    flex-wrap: wrap;
+  }
+}
+@media (768px <= width <= 1199.98px) {
+  .feed__container form {
+    width: 75%;
+  }
+  .feed__container .item__container .item {
+    padding: 5% 5% 10% 5%;
+    width: calc(50% - 12.5px);
+  }
+  .gallery__container .item__container .item {
+    width: calc(33.3333333333% - 20px);
+  }
+  .gallery__container form > div {
+    width: 75%;
+  }
+}
+@media (width <= 1199.98px) {
   header {
     justify-content: center;
-    padding-left: 16px;
-    padding-right: 16px;
   }
   header .container {
     height: 100%;
@@ -540,5 +649,20 @@ footer p span {
     opacity: 1;
     transform: translateY(75px);
     transition: opacity 0.25s linear, transform 0.25s linear;
+  }
+}
+@media (1200px <= width) {
+  .feed__container form {
+    width: 50%;
+  }
+  .feed__container .item__container .item {
+    padding: 5% 5% 10% 5%;
+    width: calc(33.3333333333% - 12.5px);
+  }
+  .gallery__container .item__container .item {
+    width: calc(20% - 20px);
+  }
+  .gallery__container form > div {
+    width: 50%;
   }
 }/*# sourceMappingURL=style.css.map */
